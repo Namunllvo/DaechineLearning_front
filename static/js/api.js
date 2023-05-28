@@ -19,7 +19,6 @@ function CheckEmail(str) {
 
 // 회원가입
 async function handleSignin() {
-    // try {
     const email = document.getElementById("email").value
     const email_ = document.getElementById("email")
     const username = document.getElementById("username").value
@@ -33,7 +32,7 @@ async function handleSignin() {
     } else if (!email || !username || !password1 || !password2) {
         alert("공란 잘못된입력입니다. 확인해주세요.")
         window.location.reload()
-    } else if (!CheckEmail(email)) { // 존재한다면 -1이 아닌 숫자가 반환됨
+    } else if (!CheckEmail(email)) { // 이메일 유효성 검사
         alert("이메일 형식이 아닙니다.");
         email_.focus();
         console.log(email_)
@@ -62,7 +61,7 @@ async function handleSignin() {
         window.location.reload()
     } else {
         console.log(response.status)
-        alert(JSON.stringify(result))
+        alert(JSON.stringify(result))   // 에러 메세지 
         window.location.reload()
     }
 
@@ -92,7 +91,7 @@ async function handleEmailValify() {
         window.location.replace(`${front_base_url}/templates/login.html`)
     } else {
         console.log(response.status)
-        alert(JSON.stringify(result))
+        alert(JSON.stringify(result))   //에러 메세지
         window.location.reload()
     }
 
@@ -120,7 +119,7 @@ async function handleLogin() {
 
     console.log(result)
 
-    if (response.status == 200) {
+    if (response.status == 200) {   // 로그인 성공시 token 저장
         localStorage.setItem("access", result.access);
         localStorage.setItem("refresh", result.refresh);
 
@@ -133,7 +132,7 @@ async function handleLogin() {
         localStorage.setItem("payload", jsonPayload);
         alert("로그인되었습니다.")
         window.location.replace(`${front_base_url}/index.html`)
-    } else {
+    } else {    // 로그인 fail시 에러 메세지
         console.log(response.status)
         alert(JSON.stringify(result))
         window.location.reload()
@@ -174,7 +173,6 @@ async function pschange() {
         headers: {
             'Authorization': `Bearer ${token}`,
             "Content-Type": "application/json",
-
         },
         method: 'POST',
         body: JSON.stringify({
@@ -191,7 +189,7 @@ async function pschange() {
         alert("비밀번호가 변경되었습니다.")
         window.location.replace(`${front_base_url}/index.html`)
     } else {
-        console.log(result)
+        console.log(result)     // fail message
         console.log(response.status)
         alert(JSON.stringify(result))
         window.location.reload()

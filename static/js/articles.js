@@ -1,5 +1,6 @@
 token = localStorage.getItem("access")
 
+// 게시글 작성 시간 계산 
 function elapsedText(date) {
     // 초 (밀리초)
     const seconds = 1;
@@ -58,7 +59,7 @@ const getArticles = async () => {
             let updated_at = article['updated_at']
 
             let date = new Date(created_at)
-            let time = elapsedText(date)
+            let time = elapsedText(date)    // 게시글 created_at 기준 계산된 시간
 
             article_list += `
                 <div class="col">

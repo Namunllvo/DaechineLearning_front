@@ -5,6 +5,7 @@ function handlelogout() {
     window.location.replace('http://127.0.0.1:5500/templates/login.html')
 }
 
+// 메인 홈페이지 로그인 / 로그아웃 헤더 
 async function injectHeader() {
     /* 헤더 가져오기 */
     fetch("./header_index.html")
@@ -28,7 +29,7 @@ async function injectHeader() {
         postbtn.innerHTML = `<div type="button" class="postbtn" onclick="location.href='/static/posting.html';"></div>`
 
         const intro = document.getElementById("intro")
-        intro.innerHTML = `${payload_parse.username}님`
+        intro.innerHTML = `${payload_parse.username}님` // 로그인된 유저 표시
         intro.style.marginBottom = "5px";
 
         let headerRight = document.getElementById("header-right")
@@ -36,7 +37,7 @@ async function injectHeader() {
         let mypage = document.createElement("a")
         mypage.innerText = "마이페이지"
         mypage.style.marginBottom = "0px";
-        mypage.setAttribute("href", "/templates/profile.html")
+        mypage.setAttribute("href", "/templates/profile.html")  // 마이페이지로 이동-비번 변경(로그인시에만)
 
         let logout = document.createElement("p")
         logout.innerText = "로그아웃"
@@ -47,7 +48,7 @@ async function injectHeader() {
         headerRight.appendChild(logout)
 
         let login = document.getElementById("login")
-        login.style.display = "none";
+        login.style.display = "none";   // 로그인 숨기기
     }
 }
 
